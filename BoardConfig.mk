@@ -108,3 +108,7 @@ ifneq ($(TARGET_USES_AOSP),true)
     endif
   endif
 endif
+
+# SELinux
+include device/qcom/sepolicy/sepolicy.mk
+
