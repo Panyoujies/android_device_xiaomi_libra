@@ -25,7 +25,6 @@ endif
 TARGET_CPU_CORTEX_A53 := true
 
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-TARGET_NO_BOOTLOADER := false
 BOOTLOADER_PLATFORM := msm8994 # use msm8994 LK configuration
 TARGET_NO_KERNEL := false
 -include $(QCPATH)/common/msm8992/BoardConfigVendor.mk
