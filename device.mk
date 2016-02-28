@@ -299,7 +299,6 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     init.recovery.hardware.rc \
     init.target.rc \
-    ueventd.goldfish.rc \
     ueventd.qcom.rc \
     fstab.qcom
 
