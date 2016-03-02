@@ -37,7 +37,7 @@ on early-init
 
 on init
 	#export LD_DEBUG 1
-    export LD_SHIM_LIBS "/system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so:/system/lib/hw/camera.vendor.msm8992.so|libcamera_shim.so:/system/lib/libcrypto.so|libboringssl-compat.so"
+    export LD_SHIM_LIBS "/system/vendor/lib/libmmcamera2_stats_modules.so|libcamera_shim.so:/system/lib/hw/camera.vendor.msm8992.so|libcamera_shim.so:/system/lib/libcrypto.so|libboringssl-compat.so:/system/lib64/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so:/vendor/lib/mediadrm/libwvdrmengine.so|libboringssl-compat.so:/vendor/lib/libWVStreamControlAPI_L1.so|libboringssl-compat.so"
 
 	# By default, primary storage is physical
     # setprop ro.vold.primary_physical 1
@@ -179,7 +179,10 @@ on boot
     write /data/misc/radio/copy_complete 0
     chown radio radio /data/misc/radio/copy_complete
     chmod 0660 /data/misc/radio/copy_complete
-
+    
+    chown system system /sys/devices/soc.0/gpio_keys.88/disabled_keys
+    chmod 0660 /sys/devices/soc.0/gpio_keys.88/disabled_keys
+    
     # Socket location for RIDL
     mkdir /dev/socket/RIDL 2770 system system
 
@@ -431,9 +434,9 @@ service cnd /system/bin/cnd
     class late_start
     socket cnd stream 660 root inet
 
-service dpmd /system/bin/dpmd
-    class late_start
-    socket dpmd stream 660 root system
+#service dpmd /system/bin/dpmd
+#    class late_start
+#    socket dpmd stream 660 root system
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class main
@@ -610,11 +613,12 @@ service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
 #    oneshot
 
 service p2p_supplicant /system/bin/wpa_supplicant \
-    -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
-    -I/system/etc/wifi/p2p_supplicant_overlay.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 -dd \
+    -O/data/misc/wifi/sockets -N \
+    -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
+    -I/system/etc/wifi/p2p_supplicant_overlay.conf \
+    -puse_p2p_group_interface=1 -d \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
 #   we will start as root and wpa_supplicant will switch to user wifi
 #   after setting up the capabilities required for WEXT
@@ -628,7 +632,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -dd \
+    -O/data/misc/wifi/sockets -d \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT

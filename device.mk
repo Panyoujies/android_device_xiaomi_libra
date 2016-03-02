@@ -57,7 +57,7 @@ PRODUCT_COPY_FILES += \
 
 #Sensor
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/sensor/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf \
+    $(LOCAL_PATH)/sensor/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf \
     $(LOCAL_PATH)/sensor/sensor_diag.cfg:system/etc/sensor_diag.cfg
 
 #keylayout
@@ -161,6 +161,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libbson
 
+# Doze mode
+PRODUCT_PACKAGES += \
+    PanyoujieDoze
+
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
@@ -236,14 +240,15 @@ PRODUCT_PACKAGES += \
     libtinyxml2 \
     libxml2
 
-#workaround
+# Camera
 PRODUCT_PACKAGES += \
-    libboringssl-compat
+    camera.msm8992 \
+    Snap
 
 #stlport
 PRODUCT_PACKAGES += \
     libstlport \
-    libcamera_shim
+    libboringssl-compat
 
 # USB
 PRODUCT_PACKAGES += \
