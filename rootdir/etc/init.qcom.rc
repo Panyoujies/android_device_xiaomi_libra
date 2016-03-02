@@ -51,6 +51,7 @@ on init
     symlink /sdcard /storage/sdcard0
     
 on early-boot
+    start wakeup-symlink
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
     # Allow subsystem (modem etc) debugging
@@ -834,6 +835,12 @@ service ril-daemon3 /system/bin/rild -c 3
     group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
 
 service usb_uicc_enable /system/bin/sh /system/etc/init.qcom.uicc.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
+service wakeup-symlink /system/bin/sh /system/bin/wakegesture.sh
     class late_start
     user root
     disabled
