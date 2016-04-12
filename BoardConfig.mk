@@ -1,0 +1,193 @@
+#
+# Copyright (C) 2014 The panyojie Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+LOCAL_PATH := device/xiaomi/libra
+
+# Platform
+TARGET_BOARD_PLATFORM := msm8992
+BOOTLOADER_PLATFORM := msm8994
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno418
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := msm8992
+TARGET_NO_BOOTLOADER := true
+
+
+#Arch
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := generic
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a53
+TARGET_BOARD_SUFFIX := _64
+TARGET_USES_64_BIT_BINDER := true
+
+# CPU
+TARGET_CPU_CORTEX_A53 := true
+TARGET_CPU_SMP := true
+
+# ANT+
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
+
+# Audio
+BOARD_USES_ALSA_AUDIO := true
+BOARD_SUPPORTS_SOUND_TRIGGER := false
+
+AUDIO_FEATURE_ENABLED_ACDB_LICENSE := true
+AUDIO_FEATURE_ENABLED_COMPRESS_CAPTURE := true
+AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
+AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
+AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
+AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD := true
+AUDIO_FEATURE_ENABLED_FLUENCE := true
+AUDIO_FEATURE_ENABLED_FM := true
+AUDIO_FEATURE_ENABLED_HFP := true
+AUDIO_FEATURE_ENABLED_INCALL_MUSIC := true
+AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
+AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
+AUDIO_FEATURE_ENABLED_INCALL_MUSIC := true
+AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
+AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
+AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
+
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BLUETOOTH_HCI_USE_MCT := true
+
+# Graphics
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_USES_NEW_ION_API :=true
+TARGET_USES_OVERLAY := true
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
+TARGET_CONTINUOUS_SPLASH_ENABLED := true
+TARGET_USES_C2D_COMPOSITION := true
+TARGET_USES_ION := true
+USE_OPENGL_RENDERER := true
+
+# Fonts
+EXTENDED_FONT_FOOTPRINT := true
+
+#Kernel
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+TARGET_USES_UNCOMPRESSED_KERNEL := true
+BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/libra/mkbootimg.mk
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 ramoops_memreserve=2M
+BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_SEPARATED_DT := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+
+TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8992
+TARGET_KERNEL_CONFIG := cyanogenmod_libra_defconfig
+
+# Partitions
+BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864 #64M
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864 #64M
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2013265920 #1920M
+BOARD_CACHEIMAGE_PARTITION_SIZE := 402653184 #384M
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 27980184576 #26G
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_FLASH_BLOCK_SIZE := 131072 #262144 #(BOARD_KERNEL_PAGESIZE * 64)
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+
+# Camera
+TARGET_USE_VENDOR_CAMERA_EXT := true
+USE_DEVICE_SPECIFIC_CAMERA := true
+
+
+# GPS
+TARGET_NO_RPC := true
+TARGET_GPS_HAL_PATH := $(LOCAL_PATH)/gps
+
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
+
+#Disable HW based full disk encryption
+TARGET_HW_DISK_ENCRYPTION := false
+
+# Lights
+TARGET_PROVIDES_LIBLIGHT := true
+
+#Enable peripheral manager
+TARGET_PER_MGR_ENABLED := true
+
+# Power
+TARGET_POWERHAL_VARIANT := qcom
+
+# INIT
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+TARGET_INIT_VENDOR_LIB := libinit_msm
+
+# Qualcomm support
+BOARD_USES_QCOM_HARDWARE := true
+
+# Time services
+#BOARD_USES_QC_TIME_SERVICES := true
+
+#Use dlmalloc instead of jemalloc for mallocs
+MALLOC_IMPL := dlmalloc
+
+# CMHW
+BOARD_HARDWARE_CLASS := device/xiaomi/libra/cmhw
+
+# RIL
+TARGET_RIL_VARIANT := caf
+SIM_COUNT := 2
+TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM
+TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
+PROTOBUF_SUPPORTED := true
+TARGET_LDPRELOAD := libNimsWrap.so
+
+# Wifi
+BOARD_HAS_QCOM_WLAN             := true
+BOARD_HAS_QCOM_WLAN_SDK         := true
+BOARD_HOSTAPD_DRIVER            := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB       :=lib_driver_cmd_qcwcn
+BOARD_WLAN_DEVICE               :=qcwcn
+BOARD_WPA_SUPPLICANT_DRIVER :=  NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
+TARGET_USES_WCNSS_CTRL          := true
+WIFI_DRIVER_MODULE_PATH         := "/system/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME         := "wlan"
+WIFI_DRIVER_FW_PATH_AP          := "ap"
+WIFI_DRIVER_FW_PATH_STA         := "sta"
+TARGET_USES_QCOM_WCNSS_QMI      := true
+WPA_SUPPLICANT_VERSION          := VER_0_8_X
+
+# Recovery
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/recovery.fstab
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_SUPPRESS_EMMC_WIPE := true
+
+# SELinux
+include device/qcom/sepolicy/sepolicy.mk
+
+# inherit from the proprietary version
+-include vendor/xiaomi/libra/BoardConfigVendor.mk
